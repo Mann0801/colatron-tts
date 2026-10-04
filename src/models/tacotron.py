@@ -5,7 +5,7 @@ from functools import lru_cache
 import torch
 import torchaudio
 
-BUNDLE = torchaudio.pipelines.TACOTRON2_WAVERNN_CHAR_LJSPEECH
+BUNDLE = torchaudio.pipelines.TACOTRON2_GRIFFINLIM_CHAR_LJSPEECH
 
 
 @lru_cache(maxsize=1)

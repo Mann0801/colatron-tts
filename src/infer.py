@@ -11,12 +11,12 @@ from pathlib import Path
 import soundfile as sf
 
 from models.tacotron import text_to_mel
-from vocoder import wavernn
+from vocoder import griffinlim
 
-VOCODERS = {"wavernn": wavernn.mel_to_wav}
+VOCODERS = {"griffinlim": griffinlim.mel_to_wav}
 
 
-def synthesize(text, vocoder="wavernn"):
+def synthesize(text, vocoder="griffinlim"):
     mel, mel_lengths, alignment = text_to_mel(text)
     wav, sample_rate = VOCODERS[vocoder](mel, mel_lengths)
     return wav, sample_rate, mel, alignment
@@ -25,7 +25,7 @@ def synthesize(text, vocoder="wavernn"):
 def main():
     parser = argparse.ArgumentParser(description="Text -> Tacotron 2 -> vocoder -> .wav")
     parser.add_argument("--text", required=True)
-    parser.add_argument("--vocoder", choices=VOCODERS, default="wavernn")
+    parser.add_argument("--vocoder", choices=VOCODERS, default="griffinlim")
     parser.add_argument("--out", default="outputs/out.wav")
     args = parser.parse_args()
 
