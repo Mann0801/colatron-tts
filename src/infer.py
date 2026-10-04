@@ -11,9 +11,12 @@ from pathlib import Path
 import soundfile as sf
 
 from models.tacotron import text_to_mel
-from vocoder import griffinlim
+from vocoder import griffinlim, hifigan
 
-VOCODERS = {"griffinlim": griffinlim.mel_to_wav}
+VOCODERS = {
+    "griffinlim": griffinlim.mel_to_wav,
+    "hifigan": hifigan.mel_to_wav,
+}
 
 
 def synthesize(text, vocoder="griffinlim"):

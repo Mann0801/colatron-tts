@@ -6,3 +6,4 @@ torchaudio==2.11.0+cpu
 numpy==2.4.6
 soundfile==0.14.0
 matplotlib==3.11.2
+speechbrain==1.1.1
