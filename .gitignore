@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Data and model weights (too big for git; download scripts instead)
+data/
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+
+# Generated audio and plots (we keep only the curated samples/ folder)
+outputs/
+*.wav
+!samples/**/*.wav
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
