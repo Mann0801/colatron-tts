@@ -27,9 +27,9 @@ text ──► text cleaning + fixed character ids ──► Tacotron 2 ──�
 | Attention alignment plots and alignment statistics | **Ours** |
 | Fixed-sentence sample generation (same mel through both vocoders) | **Ours** |
 | Gradio demo app | **Ours** |
-| Data download, text cleaning, mel extraction, splits | **Ours** *(in progress)* |
-| Baseline model trained from scratch | **Ours** *(in progress)* |
-| Evaluation: MOS sheet, mel distance, results table | **Ours** *(in progress)* |
+| Data download, text cleaning, mel extraction, splits | **Ours** |
+| Baseline model trained from scratch | **Ours** |
+| Evaluation: MOS sheet, mel distance, results table | **Ours** |
 
 We did not train or fine-tune Tacotron 2 or HiFi-GAN. Our trained model is the baseline.
 
@@ -94,17 +94,55 @@ Writes plots to `samples/alignments/` and prints three statistics per sentence:
 
 ![Attention alignment](samples/alignments/alignment_02.png)
 
-### Data and preprocessing *(in progress)*
+### Data and preprocessing
 
-<!-- Deekshitha: commands for downloading LJ Speech, preprocessing and splitting -->
+Run from the repository root, in this order:
 
-### Baseline model *(in progress)*
+```bash
+python -m src.preprocess.download        # downloads LJ Speech (~2.6 GB), keeps ~400 clips in data/raw/
+python -m src.preprocess.prepare         # cleans text, computes mels, writes data/processed/ and the split
+python -m src.preprocess.sanity_check    # plots one real mel and resynthesises it with Griffin-Lim
+```
 
-<!-- Deekshitha: commands for training the baseline and generating samples/baseline/ -->
+- `download.py` keeps a deterministic subset (file-name hash), so every machine gets the same
+  clips. `--target-clips 500` changes the size, `--archive PATH` reuses a downloaded archive and
+  `--delete-archive` removes the 2.6 GB file afterwards.
+- `prepare.py` lowercases and expands the text (`text_cleaning.py`: numbers, money, ordinals,
+  years, abbreviations), maps it to a **fixed** 37-symbol character vocabulary, computes
+  80-band log-mels with the shared settings, and makes an 80 / 10 / 10 train / val / test split.
+- `sanity_check.py` writes a mel plot and original vs Griffin-Lim audio to `eval/outputs/sanity/`.
 
-### Evaluation *(in progress)*
+Try the text cleaner on its own: `python src/preprocess/text_cleaning.py`.
 
-<!-- Deekshitha: commands for the MOS sheet and the mel-distance metric -->
+### Baseline model
+
+```bash
+python -m src.models.baseline train      # trains, saves data/baseline/baseline.pt
+python -m src.models.baseline generate   # synthesises samples/sentences.csv into samples/baseline/
+```
+
+A deliberately weak text-to-mel model trained from scratch on the subset: character embedding
+(128-d), three 1-D convolutions (256 channels, kernel 5), linear interpolation of the character
+features to the target number of frames (**no attention**), and an MLP to 80 mel bands. L1 loss
+on per-band normalised mels, Adam (lr 1e-3), gradient clipping 1.0, batch 16, 60 epochs, best
+validation checkpoint kept. Audio comes from the Griffin-Lim vocoder.
+
+### Evaluation
+
+```bash
+python eval/objective.py                                   # mel distance on 20 test clips
+python eval/make_mos_sheet.py                              # 18 clips for the listening test
+python eval/results_table.py --ratings form_responses.csv  # final table from the form answers
+```
+
+- `objective.py` converts each system's audio to a mel, aligns it with the real recording's mel
+  using dynamic time warping, and reports mean L1 and RMSE (lower is better). Output goes to
+  `eval/results/objective.csv`.
+- `make_mos_sheet.py` builds 6 held-out sentences × 3 systems (baseline, Tacotron 2 + HiFi-GAN,
+  real recording) = 18 shuffled, loudness-matched clips in `eval/mos/audio/`, a sheet to share
+  and a private answer key (`eval/mos/mos_key.csv`).
+- `results_table.py` scores the Google Form responses against the key and writes
+  `eval/results/results_table.md`. Without `--ratings`, MOS cells show "pending".
 
 ## Audio settings
 
@@ -118,7 +156,7 @@ Tacotron 2 and HiFi-GAN:
 | Mel bands | 80, slaney scale and norm, 0 to 8000 Hz |
 | Stored as | natural log of magnitude, `log(clamp(mel, 1e-5))` |
 
-## Results so far
+## Results
 
 Measured on a 24-core laptop CPU, no GPU.
 
@@ -132,6 +170,16 @@ Tacotron 2 attention on 3 test sentences: **95 to 97% monotonic**, 84 to 88% cha
 coverage. A clean diagonal means the model reads the text in order, which the original
 project's seq2seq model never achieved.
 
+### Objective mel distance (20 held-out test clips, DTW-aligned, lower is better)
+
+| System | Mel L1 | Mel RMSE |
+|---|---|---|
+| Baseline (ours, from scratch) + Griffin-Lim | 1.218 | 1.527 |
+| Tacotron 2 + HiFi-GAN | 0.889 | 1.192 |
+
+The main system is 27% lower in mel L1. Tacotron 2 was pretrained on all of LJ Speech, so it may
+have seen these clips (see Limitations).
+
 ### MOS (to be filled in after the listening test)
 
 | System | MOS (1 to 5) |
@@ -140,8 +188,7 @@ project's seq2seq model never achieved.
 | CS229 2018: simple NN | 1.7 |
 | CS229 2018: seq2seq + attention | 2.5 |
 | Tacotron (reported in original paper) | 3.82 |
-| **Ours: baseline (trained from scratch)** | *TBD* |
-| **Ours: Tacotron 2 + Griffin-Lim** | *TBD* |
+| **Ours: baseline (trained from scratch) + Griffin-Lim** | *TBD* |
 | **Ours: Tacotron 2 + HiFi-GAN** | *TBD* |
 | Real recording (LJ Speech) | *TBD* |
 
@@ -155,15 +202,15 @@ src/
   plot_alignment.py      mel + attention plots and alignment stats
   models/
     tacotron.py          pretrained Tacotron 2 wrapper
-    baseline.py          our baseline (in progress)
+    baseline.py          our baseline, trained from scratch
   vocoder/
     griffinlim.py        Griffin-Lim vocoder
     hifigan.py           pretrained HiFi-GAN wrapper
-  preprocess/            data download, text cleaning, mel extraction (in progress)
+  preprocess/            download, text cleaning, mel extraction, split, sanity check
 app/app.py               Gradio demo
-eval/                    MOS sheet and objective metrics (in progress)
-samples/                 committed demo audio and plots
-report/                  write-up notes
+eval/                    mel distance, MOS sheet, results table
+samples/                 committed demo audio (main_griffinlim/, main_hifigan/, baseline/) and plots
+report/                  slides and write-up
 data/, checkpoints/, outputs/   gitignored
 ```
 
