@@ -1,0 +1,11 @@
+id,text,griffinlim_seconds,hifigan_seconds,audio_seconds
+01,The quick brown fox jumps over the lazy dog.,0.08,0.65,3.30
+02,"Printing, in the only sense with which we are at present concerned, differs from most if not from all the arts.",0.10,1.04,7.24
+03,Machine learning lets a computer learn patterns from examples instead of following fixed rules.,0.09,0.87,5.80
+04,Welcome to our mini project on end to end speech synthesis.,0.08,0.80,4.46
+05,She sells sea shells by the sea shore.,0.07,0.43,2.97
+06,"The weather today is sunny, with a gentle breeze in the afternoon.",0.07,0.63,4.44
+07,Please remember to submit your assignment before the deadline on Saturday.,0.07,0.71,4.92
+08,A neural vocoder turns a mel spectrogram into a natural sounding waveform.,0.08,0.69,4.88
+09,Can you believe how quickly the semester has gone by?,0.06,0.45,3.29
+10,The commission concluded that the evidence was not sufficient to support the claim.,0.08,0.61,4.45
