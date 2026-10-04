@@ -1,0 +1,3 @@
+system,mel_l1,mel_rmse,n_clips
+baseline,1.2179,1.5274,20
+hifigan,0.8891,1.1918,20
