@@ -39,8 +39,8 @@ def alignment_stats(alignment):
     return {"monotonic": steps_forward, "coverage": coverage, "focus": weights.mean().item()}
 
 
-def plot(mel, alignment, text, out_path):
-    """mel: [80, frames], alignment: [frames, chars]."""
+def make_figure(mel, alignment, text):
+    """mel: [80, frames], alignment: [frames, chars]. Returns a matplotlib Figure."""
     seconds_per_frame = cfg.HOP_LENGTH / cfg.SAMPLE_RATE
     duration = mel.shape[1] * seconds_per_frame
 
@@ -63,7 +63,11 @@ def plot(mel, alignment, text, out_path):
     for ax in (ax_mel, ax_att):
         for side in ("top", "right"):
             ax.spines[side].set_visible(False)
+    return fig
 
+
+def plot(mel, alignment, text, out_path):
+    fig = make_figure(mel, alignment, text)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_path, dpi=120)
     plt.close(fig)
