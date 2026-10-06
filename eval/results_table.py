@@ -6,7 +6,7 @@ Run eval/make_mos_sheet.py and eval/objective.py first. The ratings file can be 
   * the Google Form export, where each rating question is titled with its clip name
     (e.g. "clip_07"), one row per respondent, answers 1-5; or
   * a long CSV with the columns: file,rating   (e.g. clip_07.wav,4)
-Without --ratings the MOS cells show "pending".
+Without --ratings the table shows only the objective mel distance.
 Writes eval/results/results_table.md.
 """
 import argparse
@@ -91,6 +91,20 @@ def main():
                 objective[r["system"]] = (float(r["mel_l1"]), float(r["mel_rmse"]))
     else:
         print(f"[note] {args.objective} not found; run eval/objective.py for the mel distance columns")
+
+    if not mos:
+        lines = ["| System | Mel L1 | Mel RMSE |", "|---|---|---|"]
+        for name, system in OURS:
+            if system in objective:
+                l1, rmse = objective[system]
+                lines.append(f"| {name} | {l1:.3f} | {rmse:.3f} |")
+        table = "\n".join(lines)
+        print(table)
+        out = Path(args.out)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(table + "\n", encoding="utf-8")
+        print(f"\nSaved to {out}")
+        return
 
     lines = ["| System | MOS (1-5) | Mel L1 | Mel RMSE |", "|---|---|---|---|"]
     for name, value in PAPER_MOS:
