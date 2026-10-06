@@ -29,7 +29,7 @@ text ──► text cleaning + fixed character ids ──► Tacotron 2 ──�
 | Gradio demo app | **Ours** |
 | Data download, text cleaning, mel extraction, splits | **Ours** |
 | Baseline model trained from scratch | **Ours** |
-| Evaluation: MOS sheet, mel distance, results table | **Ours** |
+| Evaluation: mel distance, results table | **Ours** |
 
 We did not train or fine-tune Tacotron 2 or HiFi-GAN. Our trained model is the baseline.
 
@@ -94,6 +94,18 @@ Writes plots to `samples/alignments/` and prints three statistics per sentence:
 
 ![Attention alignment](samples/alignments/alignment_02.png)
 
+### Baseline vs main system
+
+```bash
+python src/plot_mel_comparison.py            # sentence 05; --id 02 for another
+```
+
+Plots the mel spectrograms of `samples/baseline/NN.wav` and `samples/main_hifigan/NN.wav`
+for the same sentence. The baseline is a smooth blur with no syllables, pauses or pitch
+harmonics, which is why it sounds like noise.
+
+![Baseline vs main system](samples/comparison/mel_baseline_vs_main.png)
+
 ### Data and preprocessing
 
 Run from the repository root, in this order:
@@ -130,19 +142,14 @@ validation checkpoint kept. Audio comes from the Griffin-Lim vocoder.
 ### Evaluation
 
 ```bash
-python eval/objective.py                                   # mel distance on 20 test clips
-python eval/make_mos_sheet.py                              # 18 clips for the listening test
-python eval/results_table.py --ratings form_responses.csv  # final table from the form answers
+python eval/objective.py         # mel distance on 20 test clips
+python eval/results_table.py     # writes eval/results/results_table.md
 ```
 
 - `objective.py` converts each system's audio to a mel, aligns it with the real recording's mel
   using dynamic time warping, and reports mean L1 and RMSE (lower is better). Output goes to
   `eval/results/objective.csv`.
-- `make_mos_sheet.py` builds 6 held-out sentences × 3 systems (baseline, Tacotron 2 + HiFi-GAN,
-  real recording) = 18 shuffled, loudness-matched clips in `eval/mos/audio/`, a sheet to share
-  and a private answer key (`eval/mos/mos_key.csv`).
-- `results_table.py` scores the Google Form responses against the key and writes
-  `eval/results/results_table.md`. Without `--ratings`, MOS cells show "pending".
+- `results_table.py` turns those numbers into the Markdown table in `eval/results/results_table.md`.
 
 ## Audio settings
 
@@ -180,18 +187,6 @@ project's seq2seq model never achieved.
 The main system is 27% lower in mel L1. Tacotron 2 was pretrained on all of LJ Speech, so it may
 have seen these clips (see Limitations).
 
-### MOS (to be filled in after the listening test)
-
-| System | MOS (1 to 5) |
-|---|---|
-| CS229 2018: SVR | 1.0 |
-| CS229 2018: simple NN | 1.7 |
-| CS229 2018: seq2seq + attention | 2.5 |
-| Tacotron (reported in original paper) | 3.82 |
-| **Ours: baseline (trained from scratch) + Griffin-Lim** | *TBD* |
-| **Ours: Tacotron 2 + HiFi-GAN** | *TBD* |
-| Real recording (LJ Speech) | *TBD* |
-
 ## Repository structure
 
 ```
@@ -200,6 +195,7 @@ src/
   infer.py               CLI: text -> wav
   generate_samples.py    fixed sentences through both vocoders
   plot_alignment.py      mel + attention plots and alignment stats
+  plot_mel_comparison.py baseline vs main system mel spectrograms
   models/
     tacotron.py          pretrained Tacotron 2 wrapper
     baseline.py          our baseline, trained from scratch
@@ -208,7 +204,7 @@ src/
     hifigan.py           pretrained HiFi-GAN wrapper
   preprocess/            download, text cleaning, mel extraction, split, sanity check
 app/app.py               Gradio demo
-eval/                    mel distance, MOS sheet, results table
+eval/                    mel distance and results table
 samples/                 committed demo audio (main_griffinlim/, main_hifigan/, baseline/) and plots
 report/                  slides and write-up
 data/, checkpoints/, outputs/   gitignored
@@ -218,7 +214,7 @@ data/, checkpoints/, outputs/   gitignored
 
 | Member | Parts | Files |
 |---|---|---|
-| Mann Mehta | Pipeline setup, pretrained model integration, vocoders, alignment analysis, samples, inference CLI, demo, README | `src/models/tacotron.py`, `src/vocoder/`, `src/infer.py`, `src/plot_alignment.py`, `src/generate_samples.py`, `src/audio_config.py`, `app/`, `README.md` |
+| Mann Mehta | Pipeline setup, pretrained model integration, vocoders, alignment analysis, samples, inference CLI, demo, README | `src/models/tacotron.py`, `src/vocoder/`, `src/infer.py`, `src/plot_alignment.py`, `src/plot_mel_comparison.py`, `src/generate_samples.py`, `src/audio_config.py`, `app/`, `README.md` |
 | Marapareddy Deekshitha | Data, preprocessing, baseline model, evaluation | `src/preprocess/`, `src/models/baseline.py`, `eval/` |
 
 ## Limitations
