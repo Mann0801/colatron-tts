@@ -122,6 +122,7 @@ python -m src.preprocess.sanity_check    # plots one real mel and resynthesises 
 - `prepare.py` lowercases and expands the text (`text_cleaning.py`: numbers, money, ordinals,
   years, abbreviations), maps it to a **fixed** 37-symbol character vocabulary, computes
   80-band log-mels with the shared settings, and makes an 80 / 10 / 10 train / val / test split.
+  Our run kept **404 clips: 324 train, 40 validation, 40 test**.
 - `sanity_check.py` writes a mel plot and original vs Griffin-Lim audio to `eval/outputs/sanity/`.
 
 Try the text cleaner on its own: `python src/preprocess/text_cleaning.py`.
