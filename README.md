@@ -65,8 +65,11 @@ Prints the mel and alignment shapes, the audio length and the generation time.
 python app/app.py
 ```
 
-Open http://127.0.0.1:7860, type a sentence, pick a vocoder and press **Speak**. The page
+Open http://127.0.0.1:7860, type a sentence, pick a system and press **Speak**. The page
 plays the audio and shows the predicted mel spectrogram and attention alignment.
+The **Baseline** option runs our from-scratch model and shows its mel under Tacotron 2's
+for the same sentence; it needs the trained weights at `data/baseline/baseline.pt`
+(not in git: train with `python -m src.models.baseline train`).
 Pre-generated audio in `samples/` is a fallback if the live demo cannot run.
 
 ### Regenerate the comparison samples
