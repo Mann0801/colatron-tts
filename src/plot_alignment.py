@@ -39,8 +39,8 @@ def alignment_stats(alignment):
     return {"monotonic": steps_forward, "coverage": coverage, "focus": weights.mean().item()}
 
 
-def make_figure(mel, alignment, text):
-    """mel: [80, frames], alignment: [frames, chars]. Returns a matplotlib Figure."""
+def make_figure(mel, alignment, text, model_name="Tacotron 2"):
+    """mel: [80, frames], alignment: [decoder steps, chars]. Returns a matplotlib Figure."""
     seconds_per_frame = cfg.HOP_LENGTH / cfg.SAMPLE_RATE
     duration = mel.shape[1] * seconds_per_frame
 
@@ -48,7 +48,7 @@ def make_figure(mel, alignment, text):
 
     ax_mel.imshow(mel, origin="lower", aspect="auto", cmap="Purples",
                   extent=[0, duration, 0, mel.shape[0]])
-    ax_mel.set_title("Mel spectrogram predicted by Tacotron 2", loc="left")
+    ax_mel.set_title(f"Mel spectrogram predicted by {model_name}", loc="left")
     ax_mel.set_xlabel("Time (s)")
     ax_mel.set_ylabel("Mel band")
 

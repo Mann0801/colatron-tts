@@ -1,0 +1,121 @@
+clip,system,wer,cer,transcript
+LJ001-0128,real,0.0,0.0,it is not a real gain for the modern printer throws the gain away by putting inordinately wide spaces between his lines which probably
+LJ001-0128,baseline,0.9583333333333334,0.9776119402985075,a o
+LJ001-0128,colatron_griffinlim,0.4166666666666667,0.1865671641791045,it is not a real gang for the motor printer froze the gang away by cutton in er nugly wood spaces between his lings which probably
+LJ001-0128,colatron_hifigan,0.4166666666666667,0.17164179104477612,it is not a real gang for the motor printer fros the gang away by cutton in her nugly wice spaces between his lins which probably
+LJ001-0128,tacotron_griffinlim,0.20833333333333334,0.06716417910447761,it is not a real gain for the modern printer fruse the gangoway by putting in ordinately wide spaces between his lines which probably
+LJ001-0128,hifigan,0.25,0.06716417910447761,it is not a real gain for the modern printer fruse the ganaway by cutting in ordinately wide spaces between his lines which probably
+LJ001-0157,real,0.0,0.0,of this it may be said that though there is some good paper made now
+LJ001-0157,baseline,1.0,1.0,
+LJ001-0157,colatron_griffinlim,0.2,0.08823529411764706,this it may be said that though there is some boot paper made know
+LJ001-0157,colatron_hifigan,0.06666666666666667,0.014705882352941176,of this it may be said that though there is some good paper made know
+LJ001-0157,tacotron_griffinlim,0.0,0.0,of this it may be said that though there is some good paper made now
+LJ001-0157,hifigan,0.0,0.0,of this it may be said that though there is some good paper made now
+LJ003-0031,real,0.041666666666666664,0.007575757575757576,the same system was extended to the criminal side and cases were on record of the place of wardsmen being sold for considerable sums
+LJ003-0031,baseline,1.0,0.9621212121212122,aa ha
+LJ003-0031,colatron_griffinlim,0.08333333333333333,0.045454545454545456,the same system was extended to the criminal side and cases were on record of the place of worksmen being salve for considerable sums
+LJ003-0031,colatron_hifigan,0.16666666666666666,0.05303030303030303,the same system was extended to the criminal side and cases were an record of the place of wordsman main soul for considerable sums
+LJ003-0031,tacotron_griffinlim,0.08333333333333333,0.030303030303030304,the same system was extended to the criminal side and cases were on record of the place of wardsmen being sold for considerable sides
+LJ003-0031,hifigan,0.08333333333333333,0.030303030303030304,the same system was extended to the criminal side and cases were on record of the place of wardsmen being sold for considerable sides
+LJ003-0039,real,0.0,0.0,giltspur street and the poultry or about four hundred and seventy six in all
+LJ003-0039,baseline,1.0,0.881578947368421,aaa sa she el
+LJ003-0039,colatron_griffinlim,0.35714285714285715,0.15789473684210525,telvspur street at the poltry o'er of four hundred and seventy six in all
+LJ003-0039,colatron_hifigan,0.21428571428571427,0.13157894736842105,twelve spur street and the poultry or of four hundred and seventy six in all
+LJ003-0039,tacotron_griffinlim,0.35714285714285715,0.25,dilcuxber street and the paltry or about four hund seventy six in all old
+LJ003-0039,hifigan,0.35714285714285715,0.19736842105263158,diltukspur street and the paltry or about four hundr seventy six in all oll
+LJ004-0211,real,0.0,0.0,the moral welfare of the inmates was as closely looked after as the physical
+LJ004-0211,baseline,1.0,0.881578947368421,aha h a ha
+LJ004-0211,colatron_griffinlim,0.21428571428571427,0.06578947368421052,the moral wefar of the inates was as closely loaped after as the physical
+LJ004-0211,colatron_hifigan,0.35714285714285715,0.15789473684210525,the moral with far of the inates was as closely loked after as the phacycle
+LJ004-0211,tacotron_griffinlim,0.14285714285714285,0.06578947368421052,the more walfer of the inmates was as closely looked after as the physical
+LJ004-0211,hifigan,0.14285714285714285,0.06578947368421052,the more wolfer of the inmates was as closely looked after as the physical
+LJ006-0167,real,0.047619047619047616,0.008695652173913044,he only attended chapel once on sunday never on the weak day and generally devoted the time service was in progress
+LJ006-0167,baseline,1.0,0.9478260869565217,sa ers
+LJ006-0167,colatron_griffinlim,0.2857142857142857,0.1391304347826087,he only attended chapel on some sunday never a week day and jenrally devoted the town service was in progress
+LJ006-0167,colatron_hifigan,0.23809523809523808,0.12173913043478261,he only attended chapel on some sunday never a week day and generally devoted the ton service was in progress
+LJ006-0167,tacotron_griffinlim,0.09523809523809523,0.017391304347826087,he only attende chafel once on sunday never on the week day and generally devoted the time service was in progress
+LJ006-0167,hifigan,0.047619047619047616,0.008695652173913044,he only attended chafel once on sunday never on the week day and generally devoted the time service was in progress
+LJ007-0126,real,0.0,0.0,all the evils of indiscriminate association were strongly accentuated by the crowd collected within its narrow limits
+LJ007-0126,baseline,1.0,0.9572649572649573,a ods
+LJ007-0126,colatron_griffinlim,0.29411764705882354,0.06837606837606838,all the andles of indiscriminate association were strongly accentruated by the crowd collected with a its marrow limits
+LJ007-0126,colatron_hifigan,0.23529411764705882,0.08547008547008547,all the avals of indiscriminate association were stirmgly eccentrated by a crowd collected within its narrow limits
+LJ007-0126,tacotron_griffinlim,0.11764705882352941,0.017094017094017096,all the evels of indiscriminate association were strongly accentuated by the crowd collected within its narrow limets
+LJ007-0126,hifigan,0.11764705882352941,0.02564102564102564,all the evels of indiscriminate association were strongly accentuated by the crowd collected within its narrow limens
+LJ008-0246,real,0.0,0.0,never once from that pale face passed away its benign and patient expression
+LJ008-0246,baseline,1.0,0.9342105263157895,ha h heh
+LJ008-0246,colatron_griffinlim,0.46153846153846156,0.15789473684210525,never once from the pale face passed always been in a pagient expression
+LJ008-0246,colatron_hifigan,0.3076923076923077,0.09210526315789473,never once from the pale face passed alway its binin and pagent expression
+LJ008-0246,tacotron_griffinlim,0.23076923076923078,0.09210526315789473,never once from that pale face passed awat th its benane and patient expression
+LJ008-0246,hifigan,0.3076923076923077,0.10526315789473684,never once from that panel face passed awai fitz benane and patient expression
+LJ009-0301,real,0.125,0.08333333333333333,deserted and was pursued but without success
+LJ009-0301,baseline,1.0,0.9583333333333334,as
+LJ009-0301,colatron_griffinlim,0.25,0.125,adisserted and was pursued but without success
+LJ009-0301,colatron_hifigan,0.25,0.08333333333333333,ut deserved and was pursued but without success
+LJ009-0301,tacotron_griffinlim,0.25,0.25,deserted and was pursued but without subsistence
+LJ009-0301,hifigan,0.125,0.14583333333333334,who deserted and was pursued but without subsistece
+LJ010-0161,real,0.0,0.0,two years after she ascended the throne
+LJ010-0161,baseline,1.0,0.9487179487179487,he
+LJ010-0161,colatron_griffinlim,0.0,0.0,two years after she ascended the throne
+LJ010-0161,colatron_hifigan,0.14285714285714285,0.1282051282051282,two years after she ascended the frum
+LJ010-0161,tacotron_griffinlim,0.0,0.0,two years after she ascended the throne
+LJ010-0161,hifigan,0.0,0.0,two years after she ascended the throne
+LJ012-0040,real,0.12,0.02586206896551724,at the price solomons had paid for it and ad cost him about a hundred pounds to restock his shop with his own goods
+LJ012-0040,baseline,1.0,0.9913793103448276,s
+LJ012-0040,colatron_griffinlim,0.36,0.15517241379310345,at the press solomons had paid for it and at cust him about a hundred pounds to rustuck hi stuck with his angoats
+LJ012-0040,colatron_hifigan,0.32,0.1206896551724138,at the press solomons had paid for it and it cost him about a hundred ponds to rustuck he stop with his ownvotes
+LJ012-0040,tacotron_griffinlim,0.24,0.10344827586206896,at the price solomons had paid for it and it cost him af a hundred pounds to restac his sap with his ongoos
+LJ012-0040,hifigan,0.28,0.1206896551724138,at the price solomons had paid for it and it cost him af an hundred pounds to restac his sap with his ongoose
+LJ014-0158,real,0.0,0.0,she was discovered just as she was getting black in the face
+LJ014-0158,baseline,1.0,1.0,
+LJ014-0158,colatron_griffinlim,0.08333333333333333,0.06666666666666667,she was discovered just as she was dipping black in the face
+LJ014-0158,colatron_hifigan,0.08333333333333333,0.03333333333333333,she was discovered just as she was deating black in the face
+LJ014-0158,tacotron_griffinlim,0.0,0.0,she was discovered just as she was getting black in the face
+LJ014-0158,hifigan,0.0,0.0,she was discovered just as she was getting black in the face
+LJ014-0280,real,0.23076923076923078,0.14285714285714285,but it was proved that wats had appropriated one check for fourteen hundred pounds
+LJ014-0280,baseline,1.0,1.0,
+LJ014-0280,colatron_griffinlim,0.46153846153846156,0.22077922077922077,it was prov that watz had approcreated anchuca for fourteen hundred
+LJ014-0280,colatron_hifigan,0.38461538461538464,0.16883116883116883,but it was prov that watz had approcreated on jugo for fourteen hundred
+LJ014-0280,tacotron_griffinlim,0.46153846153846156,0.3246753246753247,it was proved that wats had appropriated one check fur
+LJ014-0280,hifigan,0.38461538461538464,0.2727272727272727,but it was proved that wats had appropriated one check fur
+LJ015-0170,real,0.08,0.006711409395973154,red path was called in and informed of the intended investigation he tried to stave off the evil hour by declaring that everything was perfectly right
+LJ015-0170,baseline,1.0,0.9463087248322147,a hahs e
+LJ015-0170,colatron_griffinlim,0.36,0.1610738255033557,wut kaf was called and informed of the intended investigation he traked to stem of the evelhom by declaring that everything was perfectly rate
+LJ015-0170,colatron_hifigan,0.4,0.12080536912751678,what path was called in formed of the intended investigation he trayed to stav of the evilhour by declaring that everything was perfectly riat
+LJ015-0170,tacotron_griffinlim,0.12,0.040268456375838924,repaf was called in an andformed of the intended investigation he tried to stave off the evil hour by declaring that everything was perfectly right
+LJ015-0170,hifigan,0.12,0.03355704697986577,ridpaf was called in an enformed of the intended investigation he tried to stave off the evil hour by declaring that everything was perfectly right
+LJ016-0126,real,0.0,0.0,the top of the wall was gained without difficulty
+LJ016-0126,baseline,1.0,0.8979591836734694,e hes
+LJ016-0126,colatron_griffinlim,0.1111111111111111,0.02040816326530612,the top of the wall was dained without difficulty
+LJ016-0126,colatron_hifigan,0.0,0.0,the top of the wall was gained without difficulty
+LJ016-0126,tacotron_griffinlim,0.1111111111111111,0.10204081632653061,the top of the wall was gained without defiltoy
+LJ016-0126,hifigan,0.1111111111111111,0.16326530612244897,the top of the wall was gained without defultatid
+LJ018-0394,real,0.23529411764705882,0.027777777777777776,by swindling the artisans dwelling company and madame rachel passed through newgate on her way to mill bank
+LJ018-0394,baseline,1.0,0.9074074074074074,s a a a ae
+LJ018-0394,colatron_griffinlim,0.5882352941176471,0.25,a swingling near peasant's dwelling's compan and maiden richel passed from newgate on her way to molbang
+LJ018-0394,colatron_hifigan,0.4117647058823529,0.1574074074074074,a swindling the orteasants dwelling's company and madan richel passed through nogate on her way to molbeng
+LJ018-0394,tacotron_griffinlim,0.5294117647058824,0.1388888888888889,by swindling the artisans do willing's company and med a ratchell passed through new gate on her way to milvane
+LJ018-0394,hifigan,0.4117647058823529,0.12037037037037036,by swingling the artisans to willing's company and medame ratchell passed through newgate on her way to milvan
+LJ021-0016,real,0.05263157894736842,0.019801980198019802,is indeed as strong now as it was years ago when elihoo root said the following very significant words
+LJ021-0016,baseline,1.0,0.9603960396039604,s is
+LJ021-0016,colatron_griffinlim,0.42105263157894735,0.13861386138613863,is indeeda strono as it was years ah when a lily route said the following very significant words
+LJ021-0016,colatron_hifigan,0.3684210526315789,0.1782178217821782,is indeed a stromna as it was years a lily route said the following very significant words
+LJ021-0016,tacotron_griffinlim,0.2631578947368421,0.10891089108910891,is indeed as strong now as it was years agot when elow rups at the following very significant word
+LJ021-0016,hifigan,0.21052631578947367,0.0891089108910891,is indeed as strong now as it was years agot when elil roupes at the following very significant words
+LJ021-0106,real,0.0,0.0,the representatives of trade and industry were permitted to write their ideas into the codes
+LJ021-0106,baseline,1.0,0.9130434782608695,a yheras
+LJ021-0106,colatron_griffinlim,0.4,0.20652173913043478,represent attempts of tribe and industry were permitted to write their edizin to the cods
+LJ021-0106,colatron_hifigan,0.2,0.06521739130434782,the representatives of tribe and industry were permitted to write their iduce into the cods
+LJ021-0106,tacotron_griffinlim,0.13333333333333333,0.08695652173913043,representatives of trade and industry were permitted to write their ideas into the cause
+LJ021-0106,hifigan,0.06666666666666667,0.043478260869565216,the representatives of trade and industry were permitted to write their ideas into the cause
+LJ022-0044,real,0.07692307692307693,0.0136986301369863,sometimes it depends upon what paper you read and what broadcast you her
+LJ022-0044,baseline,1.0,1.0,
+LJ022-0044,colatron_griffinlim,0.23076923076923078,0.1095890410958904,sometimes it depends upon with paper you read and what browcast you how
+LJ022-0044,colatron_hifigan,0.38461538461538464,0.1506849315068493,sometimes it depends upon with paper you read and with brew cast you hair
+LJ022-0044,tacotron_griffinlim,0.07692307692307693,0.0136986301369863,sometimes it depends upon what paper you read and what broadcast you her
+LJ022-0044,hifigan,0.07692307692307693,0.0136986301369863,sometimes it depends upon what paper you read and what broadcast you her
+LJ022-0183,real,0.0,0.0,that the government should assume the responsibility of providing a means by which the credit of the nation might be controlled
+LJ022-0183,baseline,0.9523809523809523,0.968503937007874,a ho
+LJ022-0183,colatron_griffinlim,0.14285714285714285,0.06299212598425197,the government should a som the responsibility of providing a means by which the credit of the nation might be controlled
+LJ022-0183,colatron_hifigan,0.09523809523809523,0.031496062992125984,that the government should assome the responsibility of providing a means by which the credit of the nation mayt be controlled
+LJ022-0183,tacotron_griffinlim,0.09523809523809523,0.031496062992125984,that the government should assumn the responsibility of providing a means by which the credit of the nation might be controvlloved
+LJ022-0183,hifigan,0.14285714285714285,0.047244094488188976,that the government should assumn the responsibility of providing a mans by which the credit of the nation might be controvallaede

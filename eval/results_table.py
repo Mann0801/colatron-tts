@@ -20,7 +20,14 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 
 PAPER_MOS = [("SVR (paper)", 1.0), ("NN (paper)", 1.7), ("Seq2seq (paper)", 2.5), ("Tacotron (paper)", 3.82)]
-OURS = [("Baseline (ours)", "baseline"), ("HiFi-GAN system (ours)", "hifigan"), ("Real recording", "real")]
+OURS = [
+    ("Baseline (ours, no attention) + Griffin-Lim", "baseline"),
+    ("Colatron (ours, from scratch) + Griffin-Lim", "colatron_griffinlim"),
+    ("Colatron (ours, from scratch) + HiFi-GAN", "colatron_hifigan"),
+    ("Tacotron 2 (pretrained) + Griffin-Lim", "tacotron_griffinlim"),
+    ("Tacotron 2 (pretrained) + HiFi-GAN", "hifigan"),
+    ("Real recording", "real"),
+]
 
 
 def load_ratings(path):

@@ -1,4 +1,4 @@
-"""Compare the mel spectrograms of the baseline and the main system on the same sentence.
+"""Compare the mel spectrograms of the baseline, Colatron and Tacotron 2 on the same sentence.
 
 Reads the committed sample audio, so no models or data are needed.
 
@@ -22,8 +22,9 @@ import soundfile as sf
 import audio_config as cfg
 
 SYSTEMS = [
-    ("Baseline (ours, from scratch) + Griffin-Lim", "baseline"),
-    ("Tacotron 2 + HiFi-GAN", "main_hifigan"),
+    ("Baseline (ours, no attention) + Griffin-Lim", "baseline"),
+    ("Colatron (ours, trained from scratch) + HiFi-GAN", "colatron_hifigan"),
+    ("Tacotron 2 (pretrained reference) + HiFi-GAN", "main_hifigan"),
 ]
 
 
@@ -39,7 +40,7 @@ def log_mel(path):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Baseline vs main system mel spectrograms")
+    parser = argparse.ArgumentParser(description="Baseline vs Colatron vs Tacotron 2 mel spectrograms")
     parser.add_argument("--id", default="05")
     parser.add_argument("--out", default="samples/comparison/mel_baseline_vs_main.png")
     args = parser.parse_args()
@@ -47,14 +48,16 @@ def main():
     with open("samples/sentences.csv", newline="") as f:
         text = {row["id"]: row["text"] for row in csv.DictReader(f)}[args.id]
 
-    mels = [log_mel(Path("samples") / folder / f"{args.id}.wav") for _, folder in SYSTEMS]
+    systems = [(label, folder) for label, folder in SYSTEMS
+               if (Path("samples") / folder / f"{args.id}.wav").exists()]
+    mels = [log_mel(Path("samples") / folder / f"{args.id}.wav") for _, folder in systems]
     vmin = min(m.min() for m in mels)
     vmax = max(m.max() for m in mels)
     seconds_per_frame = cfg.HOP_LENGTH / cfg.SAMPLE_RATE
     longest = max(m.shape[1] for m in mels) * seconds_per_frame
 
-    fig, axes = plt.subplots(len(mels), 1, figsize=(10, 5.6), constrained_layout=True, sharex=True)
-    for ax, mel, (label, _) in zip(axes, mels, SYSTEMS):
+    fig, axes = plt.subplots(len(mels), 1, figsize=(10, 2.8 * len(mels)), constrained_layout=True, sharex=True)
+    for ax, mel, (label, _) in zip(axes, mels, systems):
         ax.imshow(mel, origin="lower", aspect="auto", cmap="Purples", vmin=vmin, vmax=vmax,
                   extent=[0, mel.shape[1] * seconds_per_frame, 0, mel.shape[0]])
         ax.set_xlim(0, longest)

@@ -1,7 +1,8 @@
 """Gradio demo: type text, pick a system, hear the speech, see the mel and attention.
 
-The baseline option needs Deekshitha's trained weights at data/baseline/baseline.pt
-(gitignored; get the file from her or retrain with python -m src.models.baseline train).
+The Colatron options need our trained weights at data/colatron/colatron.pt and the baseline
+option needs data/baseline/baseline.pt (both gitignored; retrain with
+python -m src.models.colatron train / python -m src.models.baseline train).
 
 Usage:
     python app/app.py        then open http://127.0.0.1:7860
@@ -30,10 +31,47 @@ VOCODER_LABELS = {
     "Tacotron 2 + HiFi-GAN (pretrained)": "hifigan",
     "Tacotron 2 + Griffin-Lim (no learning)": "griffinlim",
 }
-BASELINE_LABEL = "Baseline (ours, trained from scratch) + Griffin-Lim"
+COLATRON_LABELS = {
+    "Colatron (ours, trained from scratch) + HiFi-GAN": "hifigan",
+    "Colatron (ours, trained from scratch) + Griffin-Lim": "griffinlim",
+}
+BASELINE_LABEL = "Baseline (ours, no attention) + Griffin-Lim"
 MAX_CHARS = 300
 
 _baseline = None
+_colatron = None
+
+
+def load_colatron():
+    """Loads Colatron once. Raises a readable error if the weights are missing."""
+    global _colatron
+    if _colatron is None:
+        from src.models.colatron import ColatronSynth
+        try:
+            _colatron = ColatronSynth()
+        except FileNotFoundError:
+            raise gr.Error("Colatron weights not found. Put colatron.pt in data/colatron/ "
+                           "(or train it: python -m src.models.colatron train).")
+    return _colatron
+
+
+def colatron_tts(text, vocoder):
+    import torch
+    from src.models.colatron import alignment_stats as colatron_stats
+
+    synth = load_colatron()
+    start = time.time()
+    mel, alignment = synth.mel(text)
+    wav, sample_rate = VOCODERS[vocoder](torch.from_numpy(mel)[None])
+    elapsed = time.time() - start
+
+    plt.close("all")
+    figure = make_figure(mel, alignment, text, model_name="Colatron (ours)")
+    stats = colatron_stats(torch.from_numpy(alignment))
+    duration = len(wav) / sample_rate
+    info = (f"{duration:.2f}s of audio generated in {elapsed:.2f}s on CPU  |  "
+            f"attention monotonic {stats['monotonic']:.0%}, coverage {stats['coverage']:.0%}")
+    return (sample_rate, wav), figure, info
 
 
 def load_baseline():
@@ -98,6 +136,8 @@ def tts(text, vocoder_label):
         raise gr.Error(f"Please keep it under {MAX_CHARS} characters.")
     if vocoder_label == BASELINE_LABEL:
         return baseline_tts(text)
+    if vocoder_label in COLATRON_LABELS:
+        return colatron_tts(text, COLATRON_LABELS[vocoder_label])
 
     start = time.time()
     wav, sample_rate, mel, alignment = synthesize(text, VOCODER_LABELS[vocoder_label])
@@ -116,16 +156,17 @@ def build_app():
     with gr.Blocks(title="Colatron TTS") as demo:
         gr.Markdown(
             "# Colatron: end-to-end text to speech\n"
-            "Text → **Tacotron 2** (pretrained on LJ Speech) → mel spectrogram → "
-            "**vocoder** → waveform. Pick a system to compare the two vocoders, or switch to "
-            "our **baseline** (trained from scratch, no attention) to hear why attention matters."
+            "Text → acoustic model → mel spectrogram → **vocoder** → waveform.  \n"
+            "**Colatron** is our seq2seq model with attention, trained from scratch on LJ Speech. "
+            "**Tacotron 2** (pretrained) is the reference. The **baseline** has no attention: "
+            "listen to it to hear why attention matters."
         )
         with gr.Row():
             with gr.Column():
                 text = gr.Textbox(label="Text", lines=3, value=SENTENCES[3],
                                   max_length=MAX_CHARS)
-                vocoder = gr.Radio(list(VOCODER_LABELS) + [BASELINE_LABEL],
-                                   value=next(iter(VOCODER_LABELS)), label="System")
+                vocoder = gr.Radio(list(COLATRON_LABELS) + list(VOCODER_LABELS) + [BASELINE_LABEL],
+                                   value=next(iter(COLATRON_LABELS)), label="System")
                 button = gr.Button("Speak", variant="primary")
                 gr.Examples([[s] for s in SENTENCES[:6]], inputs=[text])
             with gr.Column():

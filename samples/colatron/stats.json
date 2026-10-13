@@ -1,0 +1,12 @@
+{
+  "checkpoint_step": 5000,
+  "train_steps": 5000,
+  "train_hours": 2.2,
+  "parameters": 7389346,
+  "reduction_factor": 3,
+  "monotonic_min": 0.9894179701805115,
+  "monotonic_max": 1.0,
+  "coverage_min": 0.9368421052631579,
+  "coverage_max": 0.9819819819819819,
+  "best_val_loss": 0.9756
+}
