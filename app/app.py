@@ -28,8 +28,7 @@ from models.tacotron import load_tacotron, text_to_mel
 import audio_config as cfg
 
 VOCODER_LABELS = {
-    "Tacotron 2 + HiFi-GAN (pretrained)": "hifigan",
-    "Tacotron 2 + Griffin-Lim (no learning)": "griffinlim",
+    "Tacotron 2 + HiFi-GAN (pretrained reference)": "hifigan",
 }
 COLATRON_LABELS = {
     "Colatron (ours, trained from scratch) + HiFi-GAN": "hifigan",
@@ -165,7 +164,7 @@ def build_app():
             with gr.Column():
                 text = gr.Textbox(label="Text", lines=3, value=SENTENCES[3],
                                   max_length=MAX_CHARS)
-                vocoder = gr.Radio(list(COLATRON_LABELS) + list(VOCODER_LABELS) + [BASELINE_LABEL],
+                vocoder = gr.Radio(list(COLATRON_LABELS) + [BASELINE_LABEL] + list(VOCODER_LABELS),
                                    value=next(iter(COLATRON_LABELS)), label="System")
                 button = gr.Button("Speak", variant="primary")
                 gr.Examples([[s] for s in SENTENCES[:6]], inputs=[text])
@@ -182,5 +181,5 @@ def build_app():
 if __name__ == "__main__":
     print("Loading models...")
     load_tacotron(), load_griffinlim(), load_hifigan()
-    assert set(VOCODER_LABELS.values()) == set(VOCODERS)
+    assert set(VOCODER_LABELS.values()) <= set(VOCODERS)
     build_app().launch()
