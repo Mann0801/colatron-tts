@@ -218,22 +218,23 @@ Measured on a 24-core laptop CPU, no GPU.
 
 ### Main results (20 held-out test clips, lower is better)
 
-Colatron checkpoint: step 5,000, 2.2 h of training in total (laptop CPU for the first 1,000
-steps, then a free Google Colab T4 GPU).
+Colatron checkpoint: step 18,000, 5.3 h of training in total (laptop CPU for the first 1,000
+steps, then a free Google Colab T4 GPU). The write-up submitted on 13 Oct reports the earlier
+step-5,000 checkpoint (WER 25.2%, CER 10.3%); training continued afterwards.
 
 | System | WER | CER | Mel L1 | Mel RMSE |
 |---|---|---|---|---|
 | Real recording | 5.1% | 1.7% | - | - |
-| Baseline (ours, no attention) + Griffin-Lim | 99.6% | 95.2% | 1.218 | 1.528 |
-| **Colatron (ours, from scratch) + Griffin-Lim** | 28.6% | 12.1% | 0.873 | 1.151 |
-| **Colatron (ours, from scratch) + HiFi-GAN** | **25.2%** | **10.3%** | 0.887 | 1.169 |
+| Baseline (ours, no attention) + Griffin-Lim | 99.8% | 94.8% | 1.217 | 1.527 |
+| **Colatron (ours, from scratch) + Griffin-Lim** | 9.3% | 3.0% | **0.816** | **1.081** |
+| **Colatron (ours, from scratch) + HiFi-GAN** | **8.8%** | **2.8%** | 0.832 | 1.101 |
 | Tacotron 2 (pretrained reference) + Griffin-Lim | 17.6% | 8.7% | 0.878 | 1.174 |
 | Tacotron 2 (pretrained reference) + HiFi-GAN | 16.2% | 7.8% | 0.901 | 1.206 |
 
 WER / CER: word / character error rate of a wav2vec 2.0 speech recogniser on the generated audio
 (`eval/intelligibility.py`). Mel L1 / RMSE: DTW-aligned distance to the real recording's mel
 (`eval/objective.py`). Colatron's attention on three unseen sentences is 99 to 100% monotonic
-with 94 to 98% character coverage (`src/report_figures.py`).
+with 93 to 98% character coverage (`src/report_figures.py`).
 
 ![Colatron training progress](samples/colatron/training_progress.png)
 

@@ -1,7 +1,7 @@
 system,wer,cer,n_clips
 real,0.0505,0.0168,20
-baseline,0.9955,0.9517,20
-colatron_griffinlim,0.2861,0.1213,20
-colatron_hifigan,0.2522,0.1033,20
+baseline,0.9976,0.9480,20
+colatron_griffinlim,0.0925,0.0296,20
+colatron_hifigan,0.0885,0.0283,20
 tacotron_griffinlim,0.1758,0.0870,20
 hifigan,0.1618,0.0775,20

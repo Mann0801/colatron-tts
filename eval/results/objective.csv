@@ -1,6 +1,6 @@
 system,mel_l1,mel_rmse,n_clips
-baseline,1.2180,1.5277,20
-colatron_griffinlim,0.8731,1.1511,20
-colatron_hifigan,0.8866,1.1691,20
+baseline,1.2174,1.5270,20
+colatron_griffinlim,0.8164,1.0808,20
+colatron_hifigan,0.8317,1.1014,20
 tacotron_griffinlim,0.8776,1.1745,20
 hifigan,0.9012,1.2058,20
